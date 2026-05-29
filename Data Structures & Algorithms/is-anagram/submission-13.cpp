@@ -1,11 +1,17 @@
 class Solution {
 public:
-    bool hasDuplicate(vector<int>& nums) {
-        unordered_set<int> seen;
-        for(int& n : nums){
-            if(seen.contains(n)) return true;
-            seen.insert(n);
+    bool isAnagram(string s, string t) {
+        if(s.size() != t.size()) return false;
+
+        unordered_map<char, int> freq;
+
+        for(char& c : s){
+            freq[c]++;
         }
-        return false;
+        for(char& c : t){
+            if(freq[c] <= 0) return false;
+            freq[c]--;
+        }
+        return true;
     }
 };
